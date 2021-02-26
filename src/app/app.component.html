@@ -1,53 +1,101 @@
-<h2>{{apptitle}}</h2>
+<h2>{{ apptitle }}</h2>
 <div>
-<!--<table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8">-->
-  <table (matSortChange)="sortData($event)"  matSort class="mat-elevation-z8">
-  <!--- Note that these columns can be defined in any order.
+  <!--<table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8">-->
+  <table (matSortChange)="sortData($event)" matSort class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
- <!-- <ng-container matColumnDef="position">
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
     <td mat-cell *matCellDef="let element"> {{element.position}} </td>
   </ng-container> -->
 
-  <!-- Name Column -->
-  <!--<ng-container matColumnDef="name">
+    <!-- Name Column -->
+    <!--<ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
   </ng-container>-->
 
-  <!-- Weight Column -->
-  <!--<ng-container matColumnDef="weight">
+    <!-- Weight Column -->
+    <!--<ng-container matColumnDef="weight">
     <th mat-header-cell *matHeaderCellDef> Weight </th>
     <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
   </ng-container> -->
 
-  <!-- Symbol Column -->
-  <!-- <ng-container matColumnDef="symbol">
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="symbol">
     <th mat-header-cell *matHeaderCellDef> Symbol </th>
     <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
   </ng-container> -->
-  <tr>
-    <th mat-sort-header="position">Position</th>
-    <th mat-sort-header="name">Name</th>
-    <th mat-sort-header="weight">Weight</th>
-    <th mat-sort-header="symbol">Symbol</th>
-  </tr>
+    <thead role="rowgroup">
+      <tr class="mat-header-row cdk-header-row ng-star-inserted" role="row">
+        <th
+          class="mat-sort-header mat-header-cell cdk-header-cell ng-tns-c24-6 cdk-column-position mat-column-position ng-star-inserted"
+          mat-sort-header="position"
+        >
+          Position
+        </th>
+        <th
+          class="mat-sort-header mat-header-cell cdk-header-cell ng-tns-c24-6 cdk-column-position mat-column-position ng-star-inserted"
+          mat-sort-header="name"
+        >
+          Name
+        </th>
+        <th
+          class="mat-sort-header mat-header-cell cdk-header-cell ng-tns-c24-6 cdk-column-position mat-column-position ng-star-inserted"
+          mat-sort-header="weight"
+        >
+          Weight
+        </th>
+        <th
+          class="mat-sort-header mat-header-cell cdk-header-cell ng-tns-c24-6 cdk-column-position mat-column-position ng-star-inserted"
+          mat-sort-header="symbol"
+        >
+          Symbol
+        </th>
+      </tr>
+    </thead>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
+    <tbody>
+      <tr
+        class="mat-row cdk-row ng-star-inserted"
+        *ngFor="let item of sortedData"
+      >
+        <td
+          class="mat-cell cdk-cell cdk-column-position mat-column-position ng-star-inserted"
+        >
+          {{ item.position }}
+        </td>
+        <td
+          class="mat-cell cdk-cell cdk-column-position mat-column-position ng-star-inserted"
+        >
+          {{ item.name }}
+        </td>
+        <td
+          class="mat-cell cdk-cell cdk-column-position mat-column-position ng-star-inserted"
+        >
+          {{ item.weight }}
+        </td>
+        <td
+          class="mat-cell cdk-cell cdk-column-position mat-column-position ng-star-inserted"
+        >
+          {{ item.symbol }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<tr *ngFor="let item of sortedData">
-  <td>{{item.position}}</td>
-  <td>{{item.name}}</td>
-  <td>{{item.weight}}</td>
-  <td>{{item.symbol}}</td>
-</tr>
-</table>
-
-<mat-paginator [pageSize]="10" [length]="20" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="onPaginate($event)"></mat-paginator>
+  <mat-paginator
+    [pageSize]="10"
+    [length]="20"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    (page)="onPaginate($event)"
+  ></mat-paginator>
 </div>
 
 <app-direct-datasource></app-direct-datasource>
